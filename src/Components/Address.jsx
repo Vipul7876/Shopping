@@ -7,6 +7,24 @@ export default function Address () {
 
   const { address, totalAmount } = useContext( Context );
 
+
+  let newDate = new Date();
+  let currentDate = newDate.getDate() + 5;// = 20
+  let currentYear = newDate.getFullYear();// = 2024
+  let currentMonth = newDate.getMonth();// = 5 = june
+  let currentDay = newDate.getDay() + 5;// = 4
+
+  const days = [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Saturday' ];
+  const months = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
+
+  const deliveryDay = days[ currentDay > 6 ? currentDay - 6 : currentDay ];
+  const Month = months[ currentMonth ];
+
+  const deliveryDate = currentDay > 6 ? currentDate + 1 : currentDate;
+
+  console.log( deliveryDate, deliveryDay );
+
+
   return (
     <div className="flex xl:px-[15%] md:px-[10%] px-[5%] bg-pink-100 bg-opacity-50 gap-20 pt-12 lg:flex-row flex-col">
       <div className=" flex flex-col gap-2">
@@ -17,8 +35,8 @@ export default function Address () {
             {
               address.length > 0 ?
                 address.map( ( item ) => {
-                return <AdressList key={ item.index } item={ item } />;
-                } ) : <h1 className="md:text-2xl text-xl font-medium mx-auto md:px-20 2xl:px-0 my-12 text-nowrap">No saved Address</h1>             
+                  return <AdressList key={ item.index } item={ item } />;
+                } ) : <h1 className="md:text-2xl text-xl font-medium mx-auto md:px-20 2xl:px-0 my-12 text-nowrap">No saved Address</h1>
             }
 
           </div>
@@ -30,7 +48,7 @@ export default function Address () {
       <div className="lg:w-[300px] sm:w-[400px]">
         <h1 className="text-xl font-medium">Delivery Estimates</h1>
         <div className="flex flex-col gap-4">
-          <h1 className="py-3">Estimated Delivery by 21 June 2024</h1>
+          <h1 className="py-3">Estimated Delivery by { deliveryDate } { Month } { currentYear }</h1>
           <div className="flex flex-col gap-3">
             <h1 className="text-lg font-medium">Price Details</h1>
             <div className="flex flex-col gap-2">
